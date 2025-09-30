@@ -1,0 +1,11 @@
+.calculator-display {
+  font-family: 'Digital-7', monospace;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-align: right;
+  letter-spacing: 2px;
+  font-weight: normal;
+  line-height: 1.2;
+  overflow: hidden;
+  white-space: nowrap;
+}

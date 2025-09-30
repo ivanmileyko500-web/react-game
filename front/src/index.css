@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'Digital-7';
+    src: url('./font/digital_7.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Factory';
+    src: url('./font/DaMiOne-Regular.ttf') format('truetype');
+    font-weight:  normal;
+    font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
