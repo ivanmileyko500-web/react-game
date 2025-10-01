@@ -1,0 +1,6 @@
+.pattern-overlay {
+  /* Создаём точечный узор с помощью radial-gradient */
+  background-image: radial-gradient(circle, #00000030 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none; /* чтобы не мешать кликам под ним (опционально) */
+}

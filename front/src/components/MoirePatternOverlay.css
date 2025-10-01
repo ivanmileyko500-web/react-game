@@ -1,0 +1,15 @@
+.moire-pattern-overlay {
+    position: absolute;
+    background: radial-gradient(circle at 25% 25%, rgb(0, 102, 255) 10px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgb(255, 0, 102) 10px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 1;
+    pointer-events: none;
+    animation: pulseMoire 2s ease-in-out infinite;
+}
+
+@keyframes pulseMoire {
+  0% { background-size: 60px 60px; opacity: 0; }
+  50% { background-size: 80px 80px; opacity: 1; }
+  100% { background-size: 60px 60px; opacity: 0; }
+}
