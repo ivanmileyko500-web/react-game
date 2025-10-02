@@ -1,0 +1,58 @@
+.power-button {
+  border-radius: 50%;
+  border: 2px solid #444;
+  background-color: #222;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  outline: none;
+  transition: 
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.15s ease,
+    box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.power-button--on {
+  background-color: #1a1a1a;
+}
+
+.power-button--on .power-icon {
+  color: #0f0;
+}
+
+.power-button--on:active .power-icon {
+  color: #444;
+}
+
+.power-icon {
+  color: #444;
+  transition: color 0.3s ease;
+}
+
+.power-button:hover {
+  border-color: #666;
+}
+
+.power-button--on:hover {
+  border-color: #666;
+}
+
+.power-button--on:active {
+  transform: scale(0.94);
+  border-color: #888;
+}
+
+.power-button:active {
+  transform: scale(0.94);
+  border-color: #888;
+}
+
+.power-button:focus-visible {
+  outline: 2px solid #0ff;
+  outline-offset: 2px;
+}
