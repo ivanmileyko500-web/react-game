@@ -6,13 +6,7 @@
   height: 100%;
 }
 
-.workspace-left {
-  width: 400px;
-  height: 800px;
-  background-color: gray;
-}
-
-.workspace-right {
+.workspace-content {
   width: 400px;
   height: 800px;
   background-color: brown;
