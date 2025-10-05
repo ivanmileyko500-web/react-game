@@ -11,3 +11,11 @@
   height: 800px;
   background-color: brown;
 }
+
+.workspace-device {
+  min-width: 600px;
+  min-height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}

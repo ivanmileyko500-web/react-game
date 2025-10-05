@@ -1,6 +1,7 @@
 import './PatternOverlay.css';
 import DigitalNoiseOverlay from './DigitalNoiseOverlay';
 import MoirePatternOverlay from './MoirePatternOverlay';
+import PulseShadow from './PulseShadow';
 
 export default function PatternOverlay ({type = 'default', top = 0, left = 0, width = '100%', height = '100%', zIndex = 0 }) {
   if (type === 'default') return (
@@ -34,4 +35,13 @@ export default function PatternOverlay ({type = 'default', top = 0, left = 0, wi
       zIndex={zIndex}
     />
   );
+  if (type === 'pulseShadow') return (
+    <PulseShadow
+      top={top}
+      left={left}
+      width={width}
+      height={height}
+      zIndex={zIndex}
+    />
+  )
 };

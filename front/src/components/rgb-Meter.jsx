@@ -1,6 +1,6 @@
 import "./rgb-Meter.css";
 import DonutChart from "./DonutChart";
-import PatternOverlay from "./PatternOverlay";
+import PatternOverlay from "./patternOverlay/PatternOverlay";
 import CircularSlider from "./CircularSlider";
 import PowerToggle from "./PowerToggle";
 
@@ -20,15 +20,23 @@ export default function RgbMeter({ dataToDisplay }) {
                         left={0}
                         width="100%"
                         height="100%"
-                        zIndex={1}
+                        zIndex={2}
                 />
-                <DonutChart innerRadius={50} outerRadius={65} dataToDisplay={chartData} />
+                <DonutChart innerRadius={50} outerRadius={65} dataToDisplay={chartData} style={{zIndex: 1, position: "absolute", width: "100%", height: "94%"}}/>
+                <PatternOverlay
+                        type="pulseShadow"
+                        top={0}
+                        left={0}
+                        width="100%"
+                        height="100%"
+                        zIndex={0}
+                />
                 
             </div>
             <div className="rgb-meter-body">
                 <div className="body-left">
                     <CircularSlider
-                        label="Уботровка"
+                        label="Частота 1"
                         color="#000000"
                         wheel={true}
                         click={false}
@@ -37,10 +45,10 @@ export default function RgbMeter({ dataToDisplay }) {
                         min={1}
                         max={4}
                         initialValue={1}
-                        onChange={(val) => console.log('Значение:', val)}
+                        onChange={(val) => null} //TODO
                     />
                     <CircularSlider
-                        label="Епинтолентность"
+                        label="Частота 2"
                         color="#000000"
                         wheel={true}
                         click={false}
@@ -49,10 +57,10 @@ export default function RgbMeter({ dataToDisplay }) {
                         min={1}
                         max={4}
                         initialValue={1}
-                        onChange={(val) => console.log('Значение:', val)}
+                        onChange={(val) => null} //TODO
                     />
                     <CircularSlider
-                        label="Сабутировка"
+                        label="Частота 3"
                         color="#000000"
                         wheel={true}
                         click={false}
@@ -61,7 +69,7 @@ export default function RgbMeter({ dataToDisplay }) {
                         min={1}
                         max={4}
                         initialValue={1}
-                        onChange={(val) => console.log('Значение:', val)}
+                        onChange={(val) => null} //TODO
                     />
                     <PatternOverlay
                         top={0}
