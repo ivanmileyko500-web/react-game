@@ -1,10 +1,13 @@
+import { useState } from "react";
 import "./rgb-Meter.css";
-import DonutChart from "./DonutChart";
-import PatternOverlay from "./patternOverlay/PatternOverlay";
-import CircularSlider from "./CircularSlider";
-import PowerToggle from "./PowerToggle";
+import Display from "../parts/Display";
+import CircularSlider from "../parts/CircularSlider";
+import PowerToggle from "../parts/PowerToggle";
+import PatternOverlay from "../patternOverlay/PatternOverlay";
+import DonutChart from "../programms/DonutChart";
 
 export default function RgbMeter({ dataToDisplay }) {
+    const [displayOn, setDisplayOn] = useState(false);
     const colors = ["red", "green", "blue"];
     const chartData = dataToDisplay.rgb.map((rgb, index) => ({
         name: colors[index],
@@ -14,24 +17,18 @@ export default function RgbMeter({ dataToDisplay }) {
     return (
         <div className="rgb-meter">
             <div className="rgb-meter-header">
-                <PatternOverlay
-                        type="digitalNoise"
-                        top={0}
-                        left={0}
-                        width="100%"
-                        height="100%"
-                        zIndex={2}
-                />
-                <DonutChart innerRadius={50} outerRadius={65} dataToDisplay={chartData} style={{zIndex: 1, position: "absolute", width: "100%", height: "94%"}}/>
-                <PatternOverlay
-                        type="pulseShadow"
-                        top={0}
-                        left={0}
-                        width="100%"
-                        height="100%"
-                        zIndex={0}
-                />
-                
+                <Display isOn={displayOn} width={'100%'} height={'100%'}>
+                    {displayOn && (
+                        <DonutChart 
+                            innerRadius={40}
+                            outerRadius={100}
+                            dataToDisplay={chartData} 
+                            style={{ width: "100%", height: "100%" }} 
+                            loadTime={1000} 
+                            preload={<div>Загрузка...</div>} 
+                        />
+                    )}
+                </Display>
             </div>
             <div className="rgb-meter-body">
                 <div className="body-left">
@@ -81,7 +78,7 @@ export default function RgbMeter({ dataToDisplay }) {
                 </div>
                 <div className="body-right">
                     <div style={{height: "200px"}}></div>
-                    <PowerToggle radius={32} onToggle={(isOn) => console.log('Состояние:', isOn)} />
+                    <PowerToggle radius={32} onToggle={setDisplayOn} />
                     <PatternOverlay
                         top={0}
                         left={0}

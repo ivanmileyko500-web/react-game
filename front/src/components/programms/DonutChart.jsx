@@ -4,30 +4,18 @@ import {
   Pie,
   Cell,
   ResponsiveContainer,
-  Legend,
 } from 'recharts';
 import { useState } from 'react';
 
-export default function DonutChart({ innerRadius, outerRadius, dataToDisplay, style }) {
+export default function DonutChart({ innerRadius, outerRadius, dataToDisplay, loadTime, preload, style }) {
   const [activeIndex, setActiveIndex] = useState(0);
   setTimeout(() => {
     setActiveIndex(1);
-  }, 4000);
-
-  const customLegend = () => {
-    return (
-      <div className="custom-legend">
-        {dataToDisplay.map((entry, index) => (
-          <span key={index} style={{ color: entry.color }}>
-            {entry.name}
-          </span>
-        ))}
-      </div>
-    );
-  };
-
+  }, loadTime);
+console.log(dataToDisplay);
   return (
     <div style={style}>
+      {activeIndex ?
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
@@ -45,9 +33,9 @@ export default function DonutChart({ innerRadius, outerRadius, dataToDisplay, st
               <Cell key={`cell-${index}`} fill={entry.color} />
             ))}
           </Pie>
-          {activeIndex ? <Legend content={customLegend} /> : null}
         </PieChart>
       </ResponsiveContainer>
+      : preload}
     </div>
     ); 
 }
