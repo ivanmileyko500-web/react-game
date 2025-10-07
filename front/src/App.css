@@ -7,9 +7,21 @@
 }
 
 .workspace-content {
-  width: 400px;
+  width: 700px;
   height: 800px;
-  background-color: brown;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.workspace-content-top {
+  height: 400px;
+  width: 100%;
+}
+
+.workspace-content-bottom {
+  height: 300px;
+  width: 100%;
 }
 
 .workspace-device {

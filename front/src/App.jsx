@@ -1,6 +1,7 @@
 import './App.css'
 import { useCallback, useEffect, useState } from 'react'
 import DeviceRouter from './components/device/DeviceRouter'
+import ElectricArea from './components/interfaceComponents/electricArea/ElectricArea'
 
 const DEFAULT = {
   RGB: [0, 0, 0],
@@ -36,7 +37,14 @@ function App() {
 
   return (
     <div className="workspace">
-      <div className="workspace-content"></div>
+      <div className="workspace-content">
+        <div className='workspace-content-top'>
+          <ElectricArea type='origins'> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quo odio delectus saepe natus eius excepturi nostrum labore nisi quibusdam voluptatibus enim hic repudiandae, iure, voluptate autem! Iste earum architecto harum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus tenetur possimus modi fugit perferendis aliquid repellat at nostrum ratione, vitae dolor minus mollitia eos! Dolorem quisquam atque vel soluta. Harum. </ElectricArea>
+        </div>
+        <div className='workspace-content-bottom'>
+          <ElectricArea type='legacy'> Lorem ipsum dolor sit amet consectetur adipisicing elit. Et consectetur facere expedita nobis fugiat. Architecto ipsum, explicabo tempore debitis porro exercitationem illo cum quas perferendis unde nihil, dicta nobis laborum. </ElectricArea>
+        </div>
+      </div>
       <div className="workspace-device">
         <DeviceRouter
           dataToDisplay={dataToDisplay}

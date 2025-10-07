@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import PatternOverlay from '../patternOverlay/PatternOverlay';
+import PatternOverlay from '../interfaceComponents/patternOverlay/PatternOverlay';
 
 interface DisplayProps {
   isOn: boolean;
   children?: React.ReactNode;
+  borderRadius?: string;
   width?: number;
   height?: number;
 }
@@ -11,6 +12,7 @@ interface DisplayProps {
 const Display: React.FC<DisplayProps> = ({ 
   isOn, 
   children, 
+  borderRadius = '4px',
   width = 300, 
   height = 200 
 }) => {
@@ -28,8 +30,7 @@ const Display: React.FC<DisplayProps> = ({
           height: `${height}`,
           position: 'relative',
           backgroundColor: '#000',
-          overflow: 'hidden',
-          borderRadius: '4px',
+          borderRadius: borderRadius,
         }}
       />
     );
@@ -43,8 +44,7 @@ const Display: React.FC<DisplayProps> = ({
         height: `${height}`,
         position: 'relative',
         backgroundColor: '#0a0a0a',
-        overflow: 'hidden',
-        borderRadius: '4px',
+        borderRadius: borderRadius,
       }}
     >
         <PatternOverlay
@@ -54,6 +54,7 @@ const Display: React.FC<DisplayProps> = ({
             width="100%"
             height="100%"
             zIndex={2}
+            borderRadius={borderRadius}
         />
         <div
             className="content"
@@ -76,6 +77,7 @@ const Display: React.FC<DisplayProps> = ({
             width="100%"
             height="100%"
             zIndex={0}
+            borderRadius={borderRadius}
         />
     </div>
   );

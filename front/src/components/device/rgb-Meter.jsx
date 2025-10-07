@@ -3,7 +3,7 @@ import "./rgb-Meter.css";
 import Display from "../parts/Display";
 import CircularSlider from "../parts/CircularSlider";
 import PowerToggle from "../parts/PowerToggle";
-import PatternOverlay from "../patternOverlay/PatternOverlay";
+import PatternOverlay from "../interfaceComponents/patternOverlay/PatternOverlay";
 import DonutChart from "../programms/DonutChart";
 
 export default function RgbMeter({ dataToDisplay }) {
@@ -17,7 +17,7 @@ export default function RgbMeter({ dataToDisplay }) {
     return (
         <div className="rgb-meter">
             <div className="rgb-meter-header">
-                <Display isOn={displayOn} width={'100%'} height={'100%'}>
+                <Display isOn={displayOn} width={'100%'} height={'100%'} borderRadius={'15px'}>
                     {displayOn && (
                         <DonutChart 
                             innerRadius={40}

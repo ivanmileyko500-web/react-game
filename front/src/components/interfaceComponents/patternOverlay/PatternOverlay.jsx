@@ -3,7 +3,7 @@ import DigitalNoiseOverlay from './DigitalNoiseOverlay';
 import MoirePatternOverlay from './MoirePatternOverlay';
 import PulseShadow from './PulseShadow';
 
-export default function PatternOverlay ({type = 'default', top = 0, left = 0, width = '100%', height = '100%', zIndex = 0 }) {
+export default function PatternOverlay ({type = 'default', top = 0, left = 0, width = '100%', height = '100%', zIndex = 0, borderRadius = '4px'}) {
   if (type === 'default') return (
     <div
       className="pattern-overlay"
@@ -14,6 +14,7 @@ export default function PatternOverlay ({type = 'default', top = 0, left = 0, wi
         width,
         height,
         zIndex,
+        borderRadius
       }}
     />
   );
@@ -24,6 +25,7 @@ export default function PatternOverlay ({type = 'default', top = 0, left = 0, wi
       width={width}
       height={height}
       zIndex={zIndex}
+      borderRadius={borderRadius}
     />
   );
   if (type === 'moirePattern') return (
@@ -33,6 +35,7 @@ export default function PatternOverlay ({type = 'default', top = 0, left = 0, wi
       width={width}
       height={height}
       zIndex={zIndex}
+      borderRadius={borderRadius}
     />
   );
   if (type === 'pulseShadow') return (
@@ -42,6 +45,7 @@ export default function PatternOverlay ({type = 'default', top = 0, left = 0, wi
       width={width}
       height={height}
       zIndex={zIndex}
+      borderRadius={borderRadius}
     />
   )
 };
