@@ -8,19 +8,30 @@ import DonutChart from "../programms/DonutChart";
 
 export default function RgbMeter({ dataToDisplay }) {
     const [displayOn, setDisplayOn] = useState(false);
-    const colors = ["red", "green", "blue"];
-    const chartData = dataToDisplay.rgb.map((rgb, index) => ({
-        name: colors[index],
-        value: rgb,
-        color: colors[index]
+    const [frequency, setFrequency] = useState([0, 0, 0]);
+    const colors = ["gray", "red", "green", "blue"];
+    const colorValues = [
+        Math.abs(dataToDisplay.rgb[0] - (255 * (frequency[0] / 100))) + Math.abs(dataToDisplay.rgb[1] - (255 * (frequency[1] / 100))) + Math.abs(dataToDisplay.rgb[2] - (255 * (frequency[2] / 100))),
+        dataToDisplay.rgb[0] + Math.abs(dataToDisplay.rgb[0] - (255 * (frequency[0] / 100))), 
+        dataToDisplay.rgb[1] + Math.abs(dataToDisplay.rgb[1] - (255 * (frequency[1] / 100))), 
+        dataToDisplay.rgb[2] + Math.abs(dataToDisplay.rgb[2] - (255 * (frequency[2] / 100))),
+    ];
+    const chartData = colors.map((color, index) => ({
+        name: color,
+        value: colorValues[index],
+        color: color
     }));
+    const handleChangeFrequency = (index, value) => {
+        console.log(index, value);
+        setFrequency(prevState => prevState.map((item, i) => i === index ? value : item));
+    }
     return (
         <div className="rgb-meter">
             <div className="rgb-meter-header">
                 <Display isOn={displayOn} width={'100%'} height={'100%'} borderRadius={'15px'}>
                     {displayOn && (
                         <DonutChart 
-                            innerRadius={40}
+                            innerRadius={75}
                             outerRadius={100}
                             dataToDisplay={chartData} 
                             style={{ width: "100%", height: "100%" }} 
@@ -40,9 +51,9 @@ export default function RgbMeter({ dataToDisplay }) {
                         radius={20}
                         strokeWidth={6}
                         min={1}
-                        max={4}
+                        max={100}
                         initialValue={1}
-                        onChange={(val) => null} //TODO
+                        onChange={(val) => handleChangeFrequency(0, val)} //TODO
                     />
                     <CircularSlider
                         label="Частота 2"
@@ -52,9 +63,9 @@ export default function RgbMeter({ dataToDisplay }) {
                         radius={20}
                         strokeWidth={6}
                         min={1}
-                        max={4}
+                        max={100}
                         initialValue={1}
-                        onChange={(val) => null} //TODO
+                        onChange={(val) => handleChangeFrequency(1, val)} //TODO
                     />
                     <CircularSlider
                         label="Частота 3"
@@ -64,9 +75,9 @@ export default function RgbMeter({ dataToDisplay }) {
                         radius={20}
                         strokeWidth={6}
                         min={1}
-                        max={4}
+                        max={100}
                         initialValue={1}
-                        onChange={(val) => null} //TODO
+                        onChange={(val) => handleChangeFrequency(2, val)} //TODO
                     />
                     <PatternOverlay
                         top={0}

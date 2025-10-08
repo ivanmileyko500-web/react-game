@@ -41,12 +41,10 @@ export default function CircularSlider({ label = '', color = '#4CAF50', wheel = 
 const handleWheel = (e) => {
     const delta = e.deltaY > 0 ? -1 : 1; // Вверх = увеличение, вниз = уменьшение
     const newValue = value + delta;
-    setValue(Math.min(max, Math.max(min, newValue)));
+    const toSet = Math.min(max, Math.max(min, newValue));
+    setValue(toSet);
+    toSet !== value && onChange(toSet);
   };
-
-  useEffect(() => {
-    if (onChange) onChange(value);
-  }, [value, onChange]);
 
   return (
     <div style={{ display: 'flex', position: 'relative' }}>

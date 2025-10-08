@@ -12,7 +12,6 @@ export default function DonutChart({ innerRadius, outerRadius, dataToDisplay, lo
   setTimeout(() => {
     setActiveIndex(1);
   }, loadTime);
-console.log(dataToDisplay);
   return (
     <div style={style}>
       {activeIndex ?
