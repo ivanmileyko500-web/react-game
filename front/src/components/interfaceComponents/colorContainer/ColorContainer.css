@@ -1,0 +1,111 @@
+@property --border-angle-1 {
+	syntax: "<angle>";
+	inherits: true;
+	initial-value: 0deg;
+}
+
+@property --border-angle-2 {
+	syntax: "<angle>";
+	inherits: true;
+	initial-value: 90deg;
+}
+
+@property --border-angle-3 {
+	syntax: "<angle>";
+	inherits: true;
+	initial-value: 180deg;
+}
+
+
+/* sRGB color. */
+:root {
+	--color-1: rgb(33, 173, 131);
+	--color-2: rgb(165, 48, 8);
+	--color-3: rgb(87, 38, 167);
+	--background: black;
+	--foreground: white;
+	--border-size: 4px;
+	--border-radius: 0.75em;
+}
+
+@keyframes rotateBackground {
+	to { --border-angle-1: 360deg; }
+}
+
+@keyframes rotateBackground2 {
+	to { --border-angle-2: -270deg; }
+}
+
+@keyframes rotateBackground3 {
+	to { --border-angle-3: 540deg; }
+}
+
+@keyframes changeOpacity {
+    from { opacity: 0.15; }
+    to { opacity: 0.05; }
+}
+
+.overlay-color {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--border-radius);
+  opacity: 0.1;
+  background: radial-gradient(ellipse at center, transparent 50%, white 100%);
+  animation: changeOpacity 3s linear infinite alternate;
+}
+
+.color-container {
+    position: relative;
+	--border-angle-1: 0deg;
+	--border-angle-2: 90deg;
+	--border-angle-3: 180deg;
+    padding: var(--border-size);
+	border: 0;
+	display: flex;
+	width: max-content;
+	border-radius: var(--border-radius);
+	background-color: transparent;
+	background-image: conic-gradient(
+			from var(--border-angle-1) at 10% 15%,
+			transparent,
+			var(--color-1) 10%,
+			transparent 30%,
+			transparent
+		),
+		conic-gradient(
+			from var(--border-angle-2) at 70% 60%,
+			transparent,
+			var(--color-2) 10%,
+			transparent 60%,
+			transparent
+		),
+		conic-gradient(
+			from var(--border-angle-3) at 50% 20%,
+			transparent,
+			var(--color-3) 10%,
+			transparent 50%,
+			transparent
+		);
+	animation: 
+		rotateBackground 3s linear infinite,
+		rotateBackground2 8s linear infinite,
+		rotateBackground3 13s linear infinite;
+}
+
+/* Change this background to transparent to see how the gradient works */
+.color-container-content {
+    min-width: 600px;
+    min-height: 900px;
+    padding: calc(var(--border-size) * 2);
+	background: var(--background); 
+	border-radius: calc(var(--border-radius) - var(--border-size));
+	color: var(--foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

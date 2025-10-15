@@ -2,6 +2,7 @@ import './App.css'
 import { useCallback, useEffect, useState } from 'react'
 import DeviceRouter from './components/device/DeviceRouter'
 import ElectricArea from './components/interfaceComponents/electricArea/ElectricArea'
+import ColorContainer from './components/interfaceComponents/colorContainer/ColorContainer'
 
 const DEFAULT = {
   RGB: [0, 0, 0],
@@ -46,10 +47,12 @@ function App() {
         </div>
       </div>
       <div className="workspace-device">
-        <DeviceRouter
-          dataToDisplay={dataToDisplay}
-          contentIndex={deviceContentIndex}
-        />
+        <ColorContainer>
+          <DeviceRouter
+            dataToDisplay={dataToDisplay}
+            contentIndex={deviceContentIndex}
+          />
+        </ColorContainer>
     </div>
     </div>
   );
