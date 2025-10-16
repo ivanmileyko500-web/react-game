@@ -6,7 +6,10 @@ import ColorContainer from './components/interfaceComponents/colorContainer/Colo
 
 const DEFAULT = {
   RGB: [0, 0, 0],
-  DEVICE: 'Не определено'
+  TRUEFALSE: [{true: 0, false: 0}, {true: 0, false: 0}, {true: 0, false: 0}],
+  DOUBLE: [0, 0],
+  HP: 100,
+  MP: 100, 
 }
 
 function App() {
@@ -27,7 +30,7 @@ function App() {
   useEffect(() => {
     fetch('http://localhost:3000/api/get-data')
       .then(res => res.json())
-      .then((data) => {setDataToDisplay({rgb: data.rgb || DEFAULT.RGB, device: data.device || DEFAULT.DEVICE}); console.log(data)})
+      .then((data) => {setDataToDisplay({rgb: data.rgb || DEFAULT.RGB, truefalse: data.truefalse || DEFAULT.TRUEFALSE, double: data.double || DEFAULT.DOUBLE})})
       .catch(err => console.error('Ошибка:', err));
   }, []);
 

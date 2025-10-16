@@ -1,37 +1,28 @@
-import { useState } from "react";
-import "./rgb-Meter.css";
-import Display from "../parts/Display";
-import CircularSlider from "../parts/CircularSlider";
-import PowerToggle from "../parts/PowerToggle";
-import PatternOverlay from "../interfaceComponents/patternOverlay/PatternOverlay";
-import DonutChart from "../programms/DonutChart";
+import { useState } from 'react'
+import './bar-Meter.css'
+import Display from '../parts/Display'
+import CircularSlider from '../parts/CircularSlider'
+import PowerToggle from '../parts/PowerToggle'
+import PatternOverlay from '../interfaceComponents/patternOverlay/PatternOverlay'
+import BarChart from '../programms/BarChart'
 
-export default function RgbMeter({ dataToDisplay }) {
+export default function BarMeter({ dataToDisplay }) {
     const [displayOn, setDisplayOn] = useState(false);
     const [frequency, setFrequency] = useState([0, 0, 0]);
-    const colors = ["gray", "red", "green", "blue"];
-    const colorValues = [
-        Math.abs(dataToDisplay.rgb[0] - (255 * (frequency[0] / 100))) + Math.abs(dataToDisplay.rgb[1] - (255 * (frequency[1] / 100))) + Math.abs(dataToDisplay.rgb[2] - (255 * (frequency[2] / 100))),
-        dataToDisplay.rgb[0] + Math.abs(dataToDisplay.rgb[0] - (255 * (frequency[0] / 100))), 
-        dataToDisplay.rgb[1] + Math.abs(dataToDisplay.rgb[1] - (255 * (frequency[1] / 100))), 
-        dataToDisplay.rgb[2] + Math.abs(dataToDisplay.rgb[2] - (255 * (frequency[2] / 100))),
-    ];
-    const chartData = colors.map((color, index) => ({
-        name: color,
-        value: colorValues[index],
-        color: color
+    const chartData = dataToDisplay.truefalse.map((entery, index) => ({
+        difference: Math.abs(Math.abs(entery.true - entery.false) - (255 * (frequency[index] / 100))),
+        true: entery.true + Math.floor(Math.abs(Math.abs(entery.true - entery.false) - (255 * (frequency[index] / 100))) * (entery.true / (entery.true + entery.false))),
+        false: entery.false + Math.floor(Math.abs(Math.abs(entery.true - entery.false) - (255 * (frequency[index] / 100))) * (entery.false / (entery.true + entery.false))),
     }));
     const handleChangeFrequency = (index, value) => {
         setFrequency(prevState => prevState.map((item, i) => i === index ? value : item));
     }
     return (
-        <div className="rgb-meter">
-            <div className="rgb-meter-header">
+        <div className="bar-meter">
+            <div className="bar-meter-header">
                 <Display isOn={displayOn} width={'100%'} height={'100%'} borderRadius={'15px'}>
                     {displayOn && (
-                        <DonutChart 
-                            innerRadius={75}
-                            outerRadius={100}
+                        <BarChart 
                             dataToDisplay={chartData} 
                             style={{ width: "100%", height: "100%" }} 
                             loadTime={1000} 
@@ -40,7 +31,7 @@ export default function RgbMeter({ dataToDisplay }) {
                     )}
                 </Display>
             </div>
-            <div className="rgb-meter-body">
+            <div className="bar-meter-body">
                 <div className="body-left">
                     <CircularSlider
                         label="Частота 1"
@@ -87,7 +78,6 @@ export default function RgbMeter({ dataToDisplay }) {
                     />
                 </div>
                 <div className="body-right">
-                    <div style={{height: "200px"}}></div>
                     <PowerToggle radius={32} onToggle={setDisplayOn} />
                     <PatternOverlay
                         top={0}
