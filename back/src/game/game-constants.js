@@ -1,3 +1,3 @@
 export default class GameConstants {
-    static c = 299792458;
+    static SCORE_PER_PART = 50;
 }
